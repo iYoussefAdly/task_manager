@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:task_manager/features/home/presentation/data/models/task_model.dart';
+import 'package:task_manager/features/home/presentation/views/widgets/add_task_bar.dart';
 import 'package:task_manager/features/home/presentation/views/widgets/empty_state.dart';
 
 class HomeViewBody extends StatefulWidget {
@@ -13,6 +14,14 @@ class _HomeViewBodyState extends State<HomeViewBody> {
   List<TaskModel> tasks = [];
   @override
   Widget build(BuildContext context) {
-    return tasks.isEmpty?EmptyState():Container();
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Spacer(),
+        tasks.isEmpty ? EmptyState() : Container(),
+        Spacer(),
+        AddTaskBar(onAdd: (text) {}),
+      ],
+    );
   }
 }

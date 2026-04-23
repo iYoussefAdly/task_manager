@@ -5,16 +5,14 @@ class EmptyState extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Icon(Icons.check_circle_outline, size: 80),
-          SizedBox(height: 10),
-          Text("No tasks yet"),
-          Text("Add a task to get started"),
-        ],
-      ),
+    return Column(
+      children: [
+        Icon(Icons.check_circle_outline, size: 100,color: Color(0xffA3C1BD),),
+        SizedBox(height: 10),
+        Text("No tasks yet",style: TextStyle(color: Color(0xff6F7573),fontSize: 19),),
+        SizedBox(height: 8),
+        Text("Add a task to get started",style: TextStyle(color: Color(0xff9BA09F)),),
+      ],
     );
   }
 }
