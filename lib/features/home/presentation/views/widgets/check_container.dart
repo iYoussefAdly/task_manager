@@ -1,31 +1,22 @@
 import 'package:flutter/material.dart';
 
-class CheckContainer extends StatefulWidget {
-  const CheckContainer({super.key});
-
-  @override
-  State<CheckContainer> createState() => _CheckContainerState();
-}
-
-class _CheckContainerState extends State<CheckContainer> {
-  bool isChecked = false;
-
+class CheckContainer extends StatelessWidget {
+  const CheckContainer({super.key, required this.isSelected});
+  final bool isSelected;
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () {
-        setState(() {
-          isChecked = !isChecked;
-        });
-      },
-      child: Container(
-        width: 20,
-        height: 20,
-        decoration: BoxDecoration(
-          border: Border.all(width: 2, color: Colors.black),
-        ),
-        child: isChecked ? Center(child: FittedBox(child: Icon(Icons.done))) : null,
+    return Container(
+      width: 20,
+      height: 20,
+      decoration: BoxDecoration(
+        color: isSelected ? Color(0xff03655B) : Colors.white,
+        border: Border.all(width: 2, color: Colors.black),
       ),
+      child: isSelected
+          ? Center(
+              child: FittedBox(child: Icon(Icons.done, color: Colors.white)),
+            )
+          : null,
     );
   }
 }

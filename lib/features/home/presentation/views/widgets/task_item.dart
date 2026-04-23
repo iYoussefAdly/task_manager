@@ -2,8 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:task_manager/features/home/presentation/views/widgets/check_container.dart';
 import 'package:task_manager/features/home/presentation/views/widgets/task_details.dart';
 
-class TaskItem extends StatelessWidget {
+class TaskItem extends StatefulWidget {
   const TaskItem({super.key});
+
+  @override
+  State<TaskItem> createState() => _TaskItemState();
+}
+
+class _TaskItemState extends State<TaskItem> {
+  bool currentStateOfItem = false;
 
   @override
   Widget build(BuildContext context) {
@@ -14,12 +21,22 @@ class TaskItem extends StatelessWidget {
           padding: const EdgeInsets.all(20),
           child: Row(
             children: [
-              CheckContainer(),
+              GestureDetector(
+                onTap: () {
+                  setState(() {
+                    currentStateOfItem = !currentStateOfItem;
+                  });
+                },
+                child: CheckContainer(isSelected: currentStateOfItem),
+              ),
               SizedBox(width: 30),
-              TaskDetails(),
+              TaskDetails(isTaskDone: currentStateOfItem),
               Spacer(),
-              IconButton(onPressed: (){}, icon: Icon(Icons.delete,color: Colors.red,))
-              ],
+              IconButton(
+                onPressed: () {},
+                icon: Icon(Icons.delete, color: Colors.red),
+              ),
+            ],
           ),
         ),
       ),
