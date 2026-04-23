@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:task_manager/features/home/presentation/data/models/task_model.dart';
+import 'package:task_manager/features/home/presentation/views/widgets/empty_state.dart';
 
 class HomeViewBody extends StatefulWidget {
   const HomeViewBody({super.key});
@@ -8,9 +10,9 @@ class HomeViewBody extends StatefulWidget {
 }
 
 class _HomeViewBodyState extends State<HomeViewBody> {
-  List<>
+  List<TaskModel> tasks = [];
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return tasks.isEmpty?EmptyState():Container();
   }
 }
