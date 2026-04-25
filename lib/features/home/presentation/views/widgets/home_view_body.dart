@@ -12,16 +12,49 @@ class HomeViewBody extends StatefulWidget {
 }
 
 class _HomeViewBodyState extends State<HomeViewBody> {
-  List<TaskModel> tasks = [];
+  final List<TaskModel> tasks = [];
+
+  void addTask(String title) {
+    final String cleanedTitle = title.trim();
+    if (cleanedTitle.isEmpty) return;
+    setState(() {
+      tasks.add(
+        TaskModel(title: cleanedTitle, date: DateTime.now(), isDone: false),
+      );
+    });
+  }
+
+  void toggleTaskState(int index) {
+    setState(() {
+      tasks[index] = tasks[index].copyWith(isDone: !tasks[index].isDone);
+    });
+  }
+
+  void deleteTask(int index) {
+    setState(() {
+      tasks.removeAt(index);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Spacer(),
-        tasks.isEmpty ? TaskItem() : Container(),
-        Spacer(),
-        AddTaskBar(onAdd: (text) {}),
+        Expanded(
+          child: tasks.isEmpty
+              ? Center(child: EmptyState())
+              : ListView.builder(
+                  itemCount: tasks.length,
+                  itemBuilder: (context, index) {
+                    return TaskItem(
+                      task: tasks[index],
+                      onToggleDone: () => toggleTaskState(index),
+                      onDelete: () => deleteTask(index),
+                    );
+                  },
+                ),
+        ),
+        AddTaskBar(onAdd: addTask),
       ],
     );
   }

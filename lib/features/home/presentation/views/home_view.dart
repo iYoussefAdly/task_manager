@@ -7,6 +7,12 @@ class HomeView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Padding(
+          padding: const EdgeInsets.only(left: 10),
+          child: Text("My tasks",style: TextStyle(fontWeight: FontWeight.bold,),),
+        ),
+      ),
       body:HomeViewBody(),
     );
   }
